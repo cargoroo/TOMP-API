@@ -1,0 +1,17 @@
+monitor:
+  type: string
+  description: provides current asset location & duration and distance of the current leg
+  required:
+    - lat
+    - lon
+    - duration
+    - distance
+  properties:
+    lat:
+      $ref: './lat.yaml'
+    lon:
+      $ref: './lon.yaml'
+    duration:
+      $ref: './duration.yaml'
+    distance:
+      $ref: './distance.yaml'

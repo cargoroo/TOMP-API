@@ -1,0 +1,86 @@
+openapi: 3.0.0
+# Added by API Auto Mocking Plugin
+servers:
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/efel85/TOMP-API/1.0.6
+  - description: Local implementation
+    url: /
+info:
+  description: Transport Operator MaaS Provider Specification
+  version: "1.0.6"
+  title: Transport Operator MaaS Provider Specification
+  contact:
+    email: edoardo.felici@minienw.nl
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+
+tags:
+  - name: operator information
+    description: gives information about systems, stations, operating hours [from GBFS]
+
+  - name: planning
+    description: gives information about transport asset availability and pricing [free_bike_status and system_pricing_plans in GBFS]
+
+  - name: booking
+    description: a booking is the main object exchanged between MaaS and a
+      TSP [from MaaS-API].
+    externalDocs:
+      description: Booking scenarios
+      url: 'https://github.com/maasglobal/maas-tsp-api/blob/master/specs/Booking.md'
+
+  - name: trip execution
+    description: provides asset location, grants access or exit from an asset or transport system, offers trip monitoring [addendum]
+
+  - name: payment
+    description: arranges financial settlement for legs and trips
+
+  - name: support
+    description: support for the user while the trip is being executed
+
+paths:
+  /bookings/options:
+    $ref: './paths/bookings.options.yaml'
+  /bookings:
+    $ref: './paths/bookings.yaml'
+  /bookings/{id}:
+    $ref: './paths/bookings@id.yaml'
+  /free-asset-status:
+    $ref: './paths/free-asset-status.yaml'
+  /leg-summary/{id}:
+    $ref: './paths/leg-summary@id.yaml'
+  /monitor-trip/{id}:
+    $ref: './paths/monitor-trip@id.yaml'
+  /notifcation/{id}:
+    $ref: './paths/notification@id.yaml'
+  /provide-location/{id}:
+    $ref: './paths/provide-location@id.yaml'
+  /request-access/{id}:
+    $ref: './paths/request-access@id.yaml'
+  /request-exit/{id}:
+    $ref: './paths/request-exit@id.yaml'
+  /request-pause/{id}:
+    $ref: './paths/request-pause@id.yaml'
+  /station-information:
+    $ref: './paths/station-information.yaml'
+  /subscribe:
+    $ref: './paths/subscribe.yaml'
+  /support-request/{id}/{support_type}:
+    $ref: './paths/support-request@id@support_type.yaml'
+  /support-status/{id}:
+    $ref: './paths/support-status@id.yaml'
+  /system-alerts:
+    $ref: './paths/system-alerts.yaml'
+  /system-calendar:
+    $ref: './paths/system-calendar.yaml'
+  /system-hours:
+    $ref: './paths/system-hours.yaml'
+  /system-information:
+    $ref: './paths/system-information.yaml'
+  /system-pricing-plans:
+    $ref: './paths/system-pricing-plans.yaml'
+  /system-regions:
+    $ref: './paths/system-regions.yaml'
+
+security:
+  - key: []

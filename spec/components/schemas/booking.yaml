@@ -1,0 +1,23 @@
+booking:
+  type: object
+  description: The booking information describing the state and details of the
+    transaction
+  required:
+    - id
+    - state
+    - leg
+    - customer
+    - token
+  properties:
+    id:
+      description: The identifier MaaS will be using to referring to the booking
+      type: string
+    state:
+      $ref: './booking-state.yaml'
+    terms:
+      $ref: './booking-state.yaml'
+    token:
+      $ref: './security/token.yaml'
+    meta:
+      description: Arbitrary metadata that a TO can add
+      type: object

@@ -1,0 +1,42 @@
+get:
+  description: provides location of specific asset related to a booking
+  tags:
+    - trip execution
+  parameters:
+    - name: id
+      in: path
+      description: Booking identifier
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: asset location provided
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/options-coordinates.yaml'
+    '400':
+      description: Bad request (invalid query or body parameters)
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/error.yaml'
+    '401':
+      description: Authorization error (invalid API key)
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/error.yaml'
+    '404':
+      description: The booking was not found
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/error.yaml'
+    default:
+      description: Unexpected error
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/error.yaml'

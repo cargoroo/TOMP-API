@@ -1,0 +1,83 @@
+get:
+  tags:
+    - callbacks
+    summary: Describes all available callbacks
+    description: All Transport Operator endpoints need the ability to send a notification to the MaaS provider to give updates to station, asset, booking, tickets, and payments.  A MaaS Provider can call this endpoint to get a list of webhooks that can be used to provide callbacks for this service.  Each endpoint has it's own callback URL that a MaaS provider can connect and de-connect to.
+
+    # TODO: Discuss how to implement this
+    For security purposes all registered webhooks will time out after a period of 7 days to stop callbacks becoming stale.
+
+    Ttransport providers must also send over an agreed authentication key to ensure that the callback is from a valid source.  For secuirty reasons it is recommended that the MaaS Provider also sets up a whitelist of urls for the origin of the webhook from a Transport Provider.
+
+  responses:
+    200:
+      description: success
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../components/schemas/http-webhook.yaml'
+
+post:
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            assetsUrl:
+              type: string
+            bookingsUrl:
+              type: string
+            paymentsUrl:
+              type: string
+            stationsUrl:
+              type: string
+            supportUrl:
+              type: string
+  responses:
+    '200':
+      description: OK
+  callbacks:
+    assets:
+      '{$request.body#/assetsUrl}':
+        post:
+          requestBody:
+            $ref: '../components/requestBodies/callback-body.yaml'
+          responses:
+            '200':
+              description: OK
+    bookings:
+      '{$request.body#/bookingsUrl}':
+        post:
+          requestBody:
+            $ref: '../components/requestBodies/callback-body.yaml'
+          responses:
+            '200':
+              description: OK
+    payments:
+      '{$request.body#/paymentsUrl}':
+        post:
+          requestBody:
+            $ref: '../components/requestBodies/callback-body.yaml'
+          responses:
+            '200':
+              description: OK
+    stations:
+      '{$request.body#/stationsUrl}':
+        post:
+          requestBody:
+            $ref: '../components/requestBodies/callback-body.yaml'
+          responses:
+            '200':
+              description: OK
+    support:
+      '{$request.body#/supportUrl}':
+        post:
+          requestBody:
+            $ref: '../components/requestBodies/callback-body.yaml'
+          responses:
+            '200':
+              description: OK
+

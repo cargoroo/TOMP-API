@@ -1,0 +1,11 @@
+options-leg:
+  type: object
+  properties:
+    startTime:
+      $ref: './timestamp.yaml'
+    endTime:
+      $ref: './timestamp.yaml'
+    from:
+      $ref: './options-coordinates.yaml'
+    to:
+      $ref: './options-coordinates.yaml'

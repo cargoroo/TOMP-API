@@ -1,0 +1,7 @@
+options-coordinates:
+  type: object
+  properties:
+    lat:
+      $ref: './lat.yaml'
+    lon:
+      $ref: './lon.yaml'

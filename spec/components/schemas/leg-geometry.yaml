@@ -1,0 +1,9 @@
+leg-geometry:
+  type: object
+  additionalProperties: true
+  properties:
+    points:
+      type: array
+      items:
+        $ref: './geographic-location.yaml'
+      minLength: 1

@@ -1,0 +1,75 @@
+get:
+  description: Returns the `Bookings` that have been created through the system.
+  tags:
+    - booking
+  parameters:
+    - name: id
+      in: path
+      description: Booking identifier
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: The booking was found
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/booking.yaml'
+    '400':
+      description: Bad request (invalid query or body parameters)
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/error.yaml'
+    '401':
+      description: Authorization error (invalid API key)
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/error.yaml'
+    '404':
+      description: The booking was not found
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/error.yaml'
+    default:
+      description: Unexpected error
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/error.yaml'
+put:
+  description: Modifies the state of a `Booking`, e.g. **cancels**, **pays** or
+    **reschedules** it. The previous booking information is passed forward
+    as-is for reference.
+  tags:
+    - booking
+  parameters:
+    - name: id
+      in: path
+      description: Booking identifier
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: The booking was modified
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/booking.yaml'
+    default:
+      description: Unexpected error
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/error.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '../components/schemas/booking.yaml'
+    description: New `Booking` data
+    required: true

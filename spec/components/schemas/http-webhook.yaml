@@ -1,0 +1,21 @@
+http-webhook:
+  description: A webhook to enable subscription based notifications
+  required:
+    - callbackUrl
+    - endpointType
+  properties:
+    callBackUrl:
+      type: string
+      description: a fully qualified URL where the customer can learn more about this particular scheme
+      example: https://www.example.com/receive-webhooks
+    endpointType:
+      enum: [
+        ASSET,
+        BOOKING,
+        PAYMENT,
+        STATION,
+        SUPPORT,
+      ]
+    subscribed:
+      type: boolean
+      default: false

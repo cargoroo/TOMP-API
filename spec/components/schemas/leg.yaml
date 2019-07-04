@@ -1,0 +1,41 @@
+leg:
+  type: object
+  description: A OpenTripPlanner compatible definition of a leg (see OpenTripPlanner docs for reference)
+  additionalProperties: true
+  required:
+    - from
+    - to
+    - mode
+    - startTime
+    - endTime
+  properties:
+    from:
+      description: The coordinates the TO should use to resolve leg start location
+      $ref: './place.yaml'
+    to:
+      description: The coordinates the TO should use to resolve leg finish location
+      $ref: './place.yaml'
+    startTime:
+      $ref: './timestamp.yaml'
+    endTime:
+      $ref: './timestamp.yaml'
+    mode:
+      $ref: './mode.yaml'
+    departureDelay:
+      $ref: './duration.yaml'
+    arrivalDelay:
+      $ref: './duration.yaml'
+    distance:
+      $ref: './distance.yaml'
+    fare:
+      $ref: './fare.yaml'
+    route:
+      type: string
+    routeShortName:
+      type: string
+    routeLongName:
+      type: string
+    agencyId:
+      type: string
+    legGeometry:
+      $ref: './leg-geometry.yaml'
